@@ -19,6 +19,7 @@ namespace JustGrocery.Controllers
             this.justGroceryServices = justGroceryServices;
         }
 
+        //Get all items from the list
         [Route, HttpGet]
         public HttpResponseMessage GetGroceryList()
         {
@@ -27,6 +28,7 @@ namespace JustGrocery.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
+        //Add an item to the list
         [Route, HttpPost]
         public HttpResponseMessage AddNewItem(AddItemRequest model)
         {
@@ -34,26 +36,28 @@ namespace JustGrocery.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-                GroceryResponse<int> response = new GroceryResponse<int>
+            GroceryResponse<int> response = new GroceryResponse<int>
             {
                 Grocery = justGroceryServices.AddNewItem(model)
             };
-                return Request.CreateResponse(HttpStatusCode.OK, response);
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
+        //Update an existing item, quantity, or comment
         [Route("{id:int}"), HttpPut]
         public HttpResponseMessage UpdateItem(int id, UpdateItemRequest model)
         {
-            if(id != model.Id)
+            if (id != model.Id)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "The id parameter does not exist in this context");
             }
-                SuccessResponse response = new SuccessResponse();
-                justGroceryServices.UpdateItem(model);
+            SuccessResponse response = new SuccessResponse();
+            justGroceryServices.UpdateItem(model);
 
-                return Request.CreateResponse(HttpStatusCode.OK, response);
+            return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
+        //Delete an item from the list
         [Route("{id:int}"), HttpDelete]
         public HttpResponseMessage DeleteItem(int id)
         {

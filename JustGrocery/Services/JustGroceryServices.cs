@@ -47,7 +47,7 @@ namespace JustGrocery.Services
                             groceryItem.Comment = string.Empty;
                         }
 
-                        if(groceryList == null)
+                        if (groceryList == null)
                         {
                             groceryList = new List<Grocery>();
                         }
