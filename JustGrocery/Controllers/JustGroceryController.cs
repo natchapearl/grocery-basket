@@ -11,7 +11,9 @@ namespace JustGrocery.Controllers
     [RoutePrefix("api/grocery")]
     public class JustGroceryController : ApiController
     {
+        //Dependency injection
         readonly IJustGroceryServices justGroceryServices;
+
         public JustGroceryController(IJustGroceryServices justGroceryServices)
         {
             this.justGroceryServices = justGroceryServices;

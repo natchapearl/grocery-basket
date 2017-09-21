@@ -2,6 +2,7 @@
 using JustGrocery.Models.Request;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace JustGrocery.Services
 {
     public class JustGroceryServices : IJustGroceryServices
     {
-        const string connectionString = "Server=.;Database=JustGrocery;Trusted_Connection=true";
+        string connectionString = ConfigurationManager.ConnectionStrings["JustGroceryDBConnection"].ConnectionString;
+        //const string connectionString = "Server=.;Database=JustGrocery;Trusted_Connection=true";
 
         //Get a full grocery list
         public List<Grocery> GetGroceryList()
@@ -35,7 +37,15 @@ namespace JustGrocery.Services
                         groceryItem.Id = reader.GetInt32(index++);
                         groceryItem.Item = reader.GetString(index++);
                         groceryItem.Quantity = reader.GetInt32(index++);
-                        groceryItem.Comment = reader.GetString(index++);
+                        //Get a nullable value
+                        if (!reader.IsDBNull(index++))
+                        {
+                            groceryItem.Comment = reader.GetString(3);
+                        }
+                        else
+                        {
+                            groceryItem.Comment = string.Empty;
+                        }
 
                         if(groceryList == null)
                         {
