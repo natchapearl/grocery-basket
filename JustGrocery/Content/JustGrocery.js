@@ -15,7 +15,7 @@
             name: 'storeFront',
             component: 'storeFront',
             url: '/storeFront'
-        });
+        })
         $stateProvider.state({
             name: 'basket',
             component: 'basket',
@@ -25,7 +25,7 @@
 
     //Register the component
     app.component('storeFront', {
-        templateUrl: 'JustGrocery.html',
+        templateUrl: 'Content/StoreFront.html',
         controller: 'justGroceryController as gvm'
     });
     app.component('basket', {
@@ -34,25 +34,48 @@
     });
 })();
 
-//----------Factory----------//
+//----------Service----------//
 (function () {
     'use strict';
     angular.module('JustGrocery')
-        .factory('getGroceryListService', getGroceryListService);
+        .service('groceryService', groceryService);
 
-    getGroceryListService.$inject = ['$http']
+    groceryService.$inject = ['$http']
 
-    function getGroceryListService($http) {
+    function groceryService($http) {
 
-        function _getList() {
+        function _addItem() {
             var settings = {
                 url: "api/grocery"
-                , method: 'GET'
+                , method: 'POST'
+                , cache: false
             };
-            return $http(setting);
+            return $http(settings);
         }
+
+        function _updateItem(id) {
+            var settings = {
+                url: "api/grocery/" + id
+                , method: 'PUT'
+                , cache: false
+            };
+            return $http(settings);
+        }
+
+        function _deleteItem(id) {
+            var settings = {
+                url: "api/grocery/" + id
+                , method: 'DELETE'
+                , cache: false
+            };
+            return $http(settings);
+            console.log(id);
+        }
+
         return {
-            getList: _getList
+            addItem: _addItem,
+            updateItem: _updateItem,
+            deleteItem: _deleteItem
         };
     }
 })();
@@ -63,11 +86,63 @@
     angular.module('JustGrocery')
         .controller('justGroceryController', justGroceryController);
 
-    justGroceryController.$inject = ['getGroceryListService', '$state', 'alertService'];
+    justGroceryController.$inject = ['groceryService', '$state'];
 
-    function justGroceryController(getGroceryListService, $state, alertService)
+    function justGroceryController(groceryService, $state) {
+        //Register the controller
+        var gvm = this;
+        gvm.itemList = [];
+        gvm.addNewItem = _addNewItem;
+        gvm.updateItem = _updateItem;
+        gvm.deleteItem = _deleteItem;
+        gvm.$onChanges = _init;
 
-    //Register the controller
-    var gvm = this;
-    
+        function _init() {
+            console.log("Here!");
+        }
+
+        //Add
+        function _addNewItem() {
+            groceryService.addItem(gvm.itemList)
+                .then(_addItemSuccessful, _addItemFailed);
+        }
+
+        function _addItemSuccessful(response) {
+            console.log(response);
+            gvm.itemList = response.data.item;
+        };
+
+        function _addItemFailed(response) {
+            console.log(response);
+        }
+
+        //Update
+        function _updateItem() {
+            groceryService.updateItem()
+                .then(_updateItemSuccessful, _updateItemFailed);
+        }
+
+        function _updateItemSuccessful(response) {
+            console.log(response);
+        };
+
+        function _updateItemFailed(response) {
+            console.log(response);
+        }
+
+        //Delete
+        function _deleteItem() {
+            groceryService.deleteItem()
+                .then(_deleteItemSuccessful, _deleteItemFailed);
+        }
+
+        function _deleteItemSuccessful(response) {
+            console.log(response);
+        };
+
+        function _deleteItemFailed(response) {
+            console.log(response);
+        }
+
+    }
 })();

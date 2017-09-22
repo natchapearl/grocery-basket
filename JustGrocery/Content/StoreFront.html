@@ -16,3 +16,9 @@
         <button ng-click="gvm.addItem()" type="button" class="btn btn-success">Add</button>
     </form>
 </div>
+
+<tr ng-repeat="item in gvm.itemList">
+    <td>{{item.Item}}</td>
+    <td>{{item.Quantity}}</td>
+    <td>{{item.Comment}}</td>
+</tr>
