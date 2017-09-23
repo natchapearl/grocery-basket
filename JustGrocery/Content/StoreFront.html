@@ -1,6 +1,6 @@
-﻿<h3>Just Grocery</h3>
-<div class="container-fluid col-md-12 groceryFormContainer">
-    <form class="groceryForm col-md-6">
+﻿<div class="container-fluid col-md-6 groceryFormContainer">
+<h3>Just Grocery</h3>
+    <form class="groceryForm">
         <div class="form-group">
             <label>Item</label>
             <input ng-model="gvm.item" type="text" class="form-control item" placeholder="Enter your item here" />
@@ -9,16 +9,11 @@
             <label>Quantity</label>
             <input ng-model="gvm.quantity" type="number" class="form-control quantity" />
         </div>
-        <div class="form-control">
+        <div class="form-group">
             <label>Comment</label>
             <input ng-model="gvm.comment" type="text" class="form-control comment" />
         </div>
         <button ng-click="gvm.addItem()" type="button" class="btn btn-success">Add</button>
     </form>
 </div>
-
-<tr ng-repeat="item in gvm.itemList">
-    <td>{{item.Item}}</td>
-    <td>{{item.Quantity}}</td>
-    <td>{{item.Comment}}</td>
-</tr>
+<pre>{{gvm | json}}</pre>

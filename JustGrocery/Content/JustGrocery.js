@@ -14,7 +14,7 @@
         $stateProvider.state({
             name: 'storeFront',
             component: 'storeFront',
-            url: '/storeFront'
+            url: '/storefront'
         })
         $stateProvider.state({
             name: 'basket',
@@ -29,7 +29,7 @@
         controller: 'justGroceryController as gvm'
     });
     app.component('basket', {
-        templateUrl: 'JustGrocery.html',
+        templateUrl: 'Content/Basket.html',
         controller: 'justGroceryController as gvm'
     });
 })();
@@ -91,17 +91,23 @@
     function justGroceryController(groceryService, $state) {
         //Register the controller
         var gvm = this;
+        gvm.createListBtn = _createList;
         gvm.itemList = [];
+        gvm.data = {};
         gvm.addNewItem = _addNewItem;
         gvm.updateItem = _updateItem;
         gvm.deleteItem = _deleteItem;
         gvm.$onChanges = _init;
 
+        function _createList() {
+            $state.go('storeFront');
+        }
+
         function _init() {
             console.log("Here!");
         }
 
-        //Add
+        //Add item
         function _addNewItem() {
             groceryService.addItem(gvm.itemList)
                 .then(_addItemSuccessful, _addItemFailed);
@@ -116,7 +122,7 @@
             console.log(response);
         }
 
-        //Update
+        //Update item
         function _updateItem() {
             groceryService.updateItem()
                 .then(_updateItemSuccessful, _updateItemFailed);
@@ -130,7 +136,7 @@
             console.log(response);
         }
 
-        //Delete
+        //Delete item
         function _deleteItem() {
             groceryService.deleteItem()
                 .then(_deleteItemSuccessful, _deleteItemFailed);
