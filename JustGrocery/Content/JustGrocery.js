@@ -46,27 +46,30 @@
 
         function _addItem() {
             var settings = {
-                url: "api/grocery"
+                url: 'api/grocery'
                 , method: 'POST'
                 , cache: false
+                , responseType: 'JSON'
             };
             return $http(settings);
         }
 
         function _updateItem(id) {
             var settings = {
-                url: "api/grocery/" + id
+                url: 'api/grocery/' + id
                 , method: 'PUT'
                 , cache: false
+                , responseType: 'JSON'
             };
             return $http(settings);
         }
 
         function _deleteItem(id) {
             var settings = {
-                url: "api/grocery/" + id
+                url: 'api/grocery/' + id
                 , method: 'DELETE'
                 , cache: false
+                , responseType: 'JSON'
             };
             return $http(settings);
             console.log(id);
@@ -91,17 +94,13 @@
     function justGroceryController(groceryService, $state) {
         //Register the controller
         var gvm = this;
-        gvm.createListBtn = _createList;
         gvm.itemList = [];
         gvm.data = {};
+        gvm.addItemBtm = addItem;
         gvm.addNewItem = _addNewItem;
         gvm.updateItem = _updateItem;
         gvm.deleteItem = _deleteItem;
         gvm.$onChanges = _init;
-
-        function _createList() {
-            $state.go('storeFront');
-        }
 
         function _init() {
             console.log("Here!");
