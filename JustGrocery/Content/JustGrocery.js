@@ -50,16 +50,19 @@
                 , method: 'POST'
                 , cache: false
                 , responseType: 'JSON'
+                , contentType: "application/json; character=UTF-8"
             };
             return $http(settings);
         }
 
-        function _updateItem(id) {
+        function _updateItem(data) {
             var settings = {
                 url: 'api/grocery/' + id
                 , method: 'PUT'
                 , cache: false
                 , responseType: 'JSON'
+                , contentType: "application/json; character=UTF-8"
+                , data: data
             };
             return $http(settings);
         }
@@ -70,6 +73,7 @@
                 , method: 'DELETE'
                 , cache: false
                 , responseType: 'JSON'
+                , contentType: "application/json; character=UTF-8"
             };
             return $http(settings);
             console.log(id);
@@ -96,14 +100,15 @@
         var gvm = this;
         gvm.itemList = [];
         gvm.data = {};
-        gvm.addItemBtm = addItem;
+        gvm.addItemBtn = _addNewItem;
+        gvm.basketBtn = _viewBasket;
         gvm.addNewItem = _addNewItem;
         gvm.updateItem = _updateItem;
         gvm.deleteItem = _deleteItem;
-        gvm.$onChanges = _init;
 
-        function _init() {
-            console.log("Here!");
+        //View basket page
+        function _viewBasket() {
+            $state.go = ("basket");
         }
 
         //Add item

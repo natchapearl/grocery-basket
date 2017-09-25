@@ -1,0 +1,22 @@
+﻿.navbar {
+    background-color: rosybrown;
+    height: 50px;
+    border-bottom: thick;
+}
+
+.navbar-brand {
+    margin-top: 1px;
+    vertical-align: central;
+}
+
+body {
+    background-image: url('background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.groceryBasket {
+    padding-top: 100px;
+}
+

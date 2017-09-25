@@ -96,12 +96,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\background.jpg" />
+    <Content Include="Content\Basket.css" />
     <Content Include="Content\Basket.html" />
-    <Content Include="Content\JustGrocery.css" />
+    <Content Include="Content\StoreFront.css" />
     <Content Include="Content\StoreFront.html" />
     <Content Include="Content\JustGrocery.js" />
+    <Content Include="favicon.png" />
     <Content Include="Global.asax" />
     <Content Include="Index.html" />
+    <Content Include="navbarLogo.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
