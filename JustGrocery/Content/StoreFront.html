@@ -1,5 +1,5 @@
 ﻿<div class="container-fluid col-md-6 groceryFormContainer">
-<h3>Just Grocery</h3>
+    <h3>Grocery List</h3>
     <form class="groceryForm">
         <div class="form-group">
             <label>Item</label>
@@ -13,7 +13,7 @@
             <label>Comment</label>
             <input ng-model="gvm.comment" type="text" class="form-control comment" />
         </div>
-        <button ng-click="gvm.addItemBtn()" type="button" class="btn btn-success">Add</button>
+        <button ng-click="gvm.addItemBtn()" type="button" class="btn btn-success addBtn">Add</button>
     </form>
-</div>
 <pre>{{gvm | json}}</pre>
+</div>

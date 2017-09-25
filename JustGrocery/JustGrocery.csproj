@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\background.jpg" />
     <Content Include="Content\Basket.html" />
     <Content Include="Content\JustGrocery.css" />
     <Content Include="Content\StoreFront.html" />

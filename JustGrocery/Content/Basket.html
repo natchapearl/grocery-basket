@@ -1,6 +1,10 @@
-﻿<h3>Basket</h3>
-<tr ng-repeat="item in gvm.itemList">
-    <td>{{item.Item}}</td>
-    <td>{{item.Quantity}}</td>
-    <td>{{item.Comment}}</td>
-</tr>
+﻿<div class="groceryBasket">
+    <h3>Basket</h3>
+    <table class="basketTable">
+        <tr ng-repeat="item in gvm.itemList">
+            <td>{{item.Item}}</td>
+            <td>{{item.Quantity}}</td>
+            <td>{{item.Comment}}</td>
+        </tr>
+    </table>
+</div>
