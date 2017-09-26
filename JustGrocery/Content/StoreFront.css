@@ -10,6 +10,9 @@
 }
 
 body {
+    padding-top: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
     background-image: url('background.jpg');
     background-repeat: no-repeat;
     background-position: center;
@@ -28,8 +31,6 @@ label {
 }
 
 .groceryFormContainer {
-    padding-top: 100px;
-    padding-left: 50px;
     float: left;
 }
 
@@ -45,4 +46,8 @@ input[type=number] {
 .preview {
     color: white;
     font-weight: bold;
+}
+
+.groceryPrice {
+    padding-left: 50px;
 }

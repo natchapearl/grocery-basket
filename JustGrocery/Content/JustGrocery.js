@@ -100,7 +100,6 @@
         //Register the controller
         var gvm = this;
         gvm.itemList = [];
-        //gvm.data = {};
         gvm.addItemBtn = _addNewItem;
         gvm.basketBtn = _viewBasket;
         gvm.addNewItem = _addNewItem;
@@ -109,7 +108,7 @@
 
         //View basket page
         function _viewBasket() {
-            $state.go = ("basket");
+            $state.go = ('basket');
         }
 
         //Add item

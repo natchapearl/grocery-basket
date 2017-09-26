@@ -65,6 +65,7 @@ namespace JustGrocery.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
-        //Grocery deal scrapper
+        //Grocery price scrapper
+
     }
 }

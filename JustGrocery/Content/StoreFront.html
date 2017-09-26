@@ -3,23 +3,35 @@
         <img src="../navbarLogo.png" width="95" height="55" class="d-inline-block align-top" alt="">
     </a>-->
 </nav>
-<div class="container-fluid col-md-5 groceryFormContainer">
-    <h3>Grocery List</h3><br />
-    <form class="groceryForm">
-        <div class="form-group">
-            <label>Item</label>
-            <input ng-model="gvm.data.item" type="text" class="form-control item" placeholder="Enter your item here" />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5 groceryFormContainer">
+            <h3>Grocery List</h3><br />
+            <form class="groceryForm">
+                <div class="form-group">
+                    <label>Item</label>
+                    <input ng-model="gvm.data.item" type="text" class="form-control item" placeholder="Enter your item here" />
+                </div>
+                <div class="form-group">
+                    <label>Comment</label>
+                    <input ng-model="gvm.data.comment" type="text" class="form-control comment" placeholder="Enter item's description here" />
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input ng-model="gvm.data.quantity" type="number" class="form-control quantity" />
+                </div><br />
+                <button ng-click="gvm.addItemBtn()" type="button" href="#" class="btn btn-sm btn-success addBtn">Add Item</button>&nbsp;&nbsp;
+                <button ng-click="gvm.basketBtn()" type="button" href="#" class="btn btn-sm btn-info basketBtn">View Basket</button>
+            </form><br />
+            <pre class="preview">{{gvm | json}}</pre>
         </div>
-        <div class="form-group">
-            <label>Comment</label>
-            <input ng-model="gvm.data.comment" type="text" class="form-control comment" placeholder="Enter item's description here" />
+
+        <div class="col-md-7 groceryPrice">
+            <h1>BLAH</h1>
+            <h2>BLAH</h2>
+            <h4>BLAH</h4>
+            <h5>BLAH</h5>
+            <h6>BLAH</h6>
         </div>
-        <div class="form-group">
-            <label>Quantity</label>
-            <input ng-model="gvm.data.quantity" type="number" class="form-control quantity" />
-        </div><br />
-        <button ng-click="gvm.addItemBtn()" type="button" href="#" class="btn btn-sm btn-success addBtn">Add Item</button>&nbsp;&nbsp;
-        <button ng-click="gvm.basketBtn()" type="button" href="#" class="btn btn-sm btn-info basketBtn">View Basket</button>
-    </form><br />
-<pre class="preview">{{gvm | json}}</pre>
+    </div>
 </div>
