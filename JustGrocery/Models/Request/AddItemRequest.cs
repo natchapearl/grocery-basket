@@ -10,8 +10,8 @@ namespace JustGrocery.Models.Request
     {
         [Required]
         public string Item { get; set; }
+        public string Comment { get; set; }
         [Required]
         public int Quantity { get; set; }
-        public string Comment { get; set; }
     }
 }

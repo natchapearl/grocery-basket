@@ -36,8 +36,7 @@ namespace JustGrocery.Services
                         Grocery groceryItem = new Grocery();
                         groceryItem.Id = reader.GetInt32(index++);
                         groceryItem.Item = reader.GetString(index++);
-                        groceryItem.Quantity = reader.GetInt32(index++);
-                        //Get a nullable value
+                        //Get a nullable value for comment 
                         if (!reader.IsDBNull(index++))
                         {
                             groceryItem.Comment = reader.GetString(3);
@@ -51,6 +50,9 @@ namespace JustGrocery.Services
                         {
                             groceryList = new List<Grocery>();
                         }
+
+                        groceryItem.Quantity = reader.GetInt32(index++);
+
                         groceryList.Add(groceryItem);
                     }
                     return groceryList;
@@ -70,8 +72,8 @@ namespace JustGrocery.Services
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@Item", model.Item);
-                cmd.Parameters.AddWithValue("@Quantity", model.Quantity);
                 cmd.Parameters.AddWithValue("@Comment", model.Comment);
+                cmd.Parameters.AddWithValue("@Quantity", model.Quantity);
 
                 SqlParameter outputParam = cmd.Parameters.Add("@Id", SqlDbType.Int);
                 outputParam.Direction = ParameterDirection.Output;
@@ -94,8 +96,8 @@ namespace JustGrocery.Services
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@Item", model.Item);
-                cmd.Parameters.AddWithValue("@Quantity", model.Quantity);
                 cmd.Parameters.AddWithValue("@Comment", model.Comment);
+                cmd.Parameters.AddWithValue("@Quantity", model.Quantity);
 
                 cmd.ExecuteNonQuery();
             }
