@@ -44,13 +44,14 @@
 
     function groceryService($http) {
 
-        function _addItem() {
+        function _addItem(data) {
             var settings = {
                 url: 'api/grocery'
                 , method: 'POST'
                 , cache: false
-                , responseType: 'JSON'
+                , responseType: 'json'
                 , contentType: "application/json; character=UTF-8"
+                , data: data
             };
             return $http(settings);
         }
@@ -60,7 +61,7 @@
                 url: 'api/grocery/' + id
                 , method: 'PUT'
                 , cache: false
-                , responseType: 'JSON'
+                , responseType: 'json'
                 , contentType: "application/json; character=UTF-8"
                 , data: data
             };
@@ -72,7 +73,7 @@
                 url: 'api/grocery/' + id
                 , method: 'DELETE'
                 , cache: false
-                , responseType: 'JSON'
+                , responseType: 'json'
                 , contentType: "application/json; character=UTF-8"
             };
             return $http(settings);
@@ -99,7 +100,7 @@
         //Register the controller
         var gvm = this;
         gvm.itemList = [];
-        gvm.data = {};
+        //gvm.data = {};
         gvm.addItemBtn = _addNewItem;
         gvm.basketBtn = _viewBasket;
         gvm.addNewItem = _addNewItem;
@@ -113,13 +114,14 @@
 
         //Add item
         function _addNewItem() {
-            groceryService.addItem(gvm.itemList)
+            //groceryService.addItem({ item: gvm.item, quantity: gvm.quantity, comment: gvm.comment })
+            groceryService.addItem(gvm.data)
                 .then(_addItemSuccessful, _addItemFailed);
         }
 
         function _addItemSuccessful(response) {
             console.log(response);
-            gvm.itemList = response.data.item;
+            gvm.itemList.push(Object.assign({}, gvm.data));
         };
 
         function _addItemFailed(response) {
@@ -127,8 +129,8 @@
         }
 
         //Update item
-        function _updateItem() {
-            groceryService.updateItem()
+        function _updateItem(id) {
+            groceryService.updateItem(id)
                 .then(_updateItemSuccessful, _updateItemFailed);
         }
 
@@ -141,8 +143,8 @@
         }
 
         //Delete item
-        function _deleteItem() {
-            groceryService.deleteItem()
+        function _deleteItem(id) {
+            groceryService.deleteItem(id)
                 .then(_deleteItemSuccessful, _deleteItemFailed);
         }
 

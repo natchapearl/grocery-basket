@@ -8,15 +8,15 @@
     <form class="groceryForm">
         <div class="form-group">
             <label>Item</label>
-            <input ng-model="gvm.item" type="text" class="form-control item" placeholder="Enter your item here" />
+            <input ng-model="gvm.data.item" type="text" class="form-control item" placeholder="Enter your item here" />
         </div>
         <div class="form-group">
             <label>Comment</label>
-            <input ng-model="gvm.comment" type="text" class="form-control comment" placeholder="Enter item's description here" />
+            <input ng-model="gvm.data.comment" type="text" class="form-control comment" placeholder="Enter item's description here" />
         </div>
         <div class="form-group">
             <label>Quantity</label>
-            <input ng-model="gvm.quantity" type="number" class="form-control quantity" />
+            <input ng-model="gvm.data.quantity" type="number" class="form-control quantity" />
         </div><br />
         <button ng-click="gvm.addItemBtn()" type="button" href="#" class="btn btn-sm btn-success addBtn">Add Item</button>&nbsp;&nbsp;
         <button ng-click="gvm.basketBtn()" type="button" href="#" class="btn btn-sm btn-info basketBtn">View Basket</button>
