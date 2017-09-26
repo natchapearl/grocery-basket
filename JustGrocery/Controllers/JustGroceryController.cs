@@ -62,6 +62,7 @@ namespace JustGrocery.Controllers
         public HttpResponseMessage DeleteItem(int id)
         {
             SuccessResponse response = new SuccessResponse();
+            justGroceryServices.DeleteItem(id);
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 

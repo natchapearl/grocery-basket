@@ -1,5 +1,5 @@
-﻿.navbar {
-    background-color: rosybrown;
+﻿/*.navbar {
+    background-color: cadetblue;
     height: 65px;
     border-bottom: thick;
 }
@@ -7,16 +7,17 @@
 .navbar-brand {
     margin-top: 1px;
     vertical-align: central;
-}
+}*/
 
 body {
-    padding-top: 100px;
+    padding-top: 80px;
     padding-left: 50px;
     padding-right: 50px;
     background-image: url('background.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 h3 {
@@ -53,6 +54,21 @@ input[type=number] {
     padding-top: 10px;
 }
 
-.groceryPrice {
-    padding-left: 50px;
+.groceryBasketContainer {
+    padding-left: 90px;
+}
+
+.basketTable {
+    width: 100%;
+
+}
+
+td, th {
+    text-align: left;
+    padding: 8px;
+    color: mistyrose;
+}
+
+.removeBtn {
+    font-weight: bold;
 }

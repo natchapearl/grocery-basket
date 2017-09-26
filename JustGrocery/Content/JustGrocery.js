@@ -16,11 +16,11 @@
             component: 'storeFront',
             url: '/storefront'
         })
-        $stateProvider.state({
-            name: 'basket',
-            component: 'basket',
-            url: '/basket'
-        });
+        //$stateProvider.state({
+        //    name: 'basket',
+        //    component: 'basket',
+        //    url: '/basket'
+        //});
     }
 
     //Register the component
@@ -28,10 +28,10 @@
         templateUrl: 'Content/StoreFront.html',
         controller: 'justGroceryController as gvm'
     });
-    app.component('basket', {
-        templateUrl: 'Content/Basket.html',
-        controller: 'justGroceryController as gvm'
-    });
+    //app.component('basket', {
+    //    templateUrl: 'Content/Basket.html',
+    //    controller: 'justGroceryController as gvm'
+    //});
 })();
 
 //----------Service----------//
@@ -52,6 +52,16 @@
                 , responseType: 'json'
                 , contentType: "application/json; character=UTF-8"
                 , data: data
+            };
+            return $http(settings);
+        }
+        function _getList() {
+            var settings = {
+                url: 'api/grocery'
+                , method: 'GET'
+                , cache: false
+                , responseType: 'json'
+                , contentType: "application/json; character=UTF-8"
             };
             return $http(settings);
         }
@@ -82,6 +92,7 @@
 
         return {
             addItem: _addItem,
+            getList: _getList,
             updateItem: _updateItem,
             deleteItem: _deleteItem
         };
@@ -101,10 +112,12 @@
         var gvm = this;
         gvm.itemList = [];
         gvm.addItemBtn = _addNewItem;
-        gvm.basketBtn = _viewBasket;
         gvm.addNewItem = _addNewItem;
-        gvm.updateItem = _updateItem;
+        gvm.$onInit = _getList;
+        gvm.deleteItemBtn = _deleteItem;
         gvm.deleteItem = _deleteItem;
+        gvm.updateItem = _updateItem;
+        //gvm.clearListBtn = _clearList;
 
         //View basket page
         function _viewBasket() {
@@ -127,6 +140,21 @@
             console.log(response);
         }
 
+        //Get list
+        function _getList() {
+            groceryService.getList()
+                .then(_getListSuccessful, _getListFailed);
+        }
+        function _getListSuccessful(response) {
+            console.log(response);
+            gvm.itemList = response.data.Groceries;
+            console.log(gvm.itemList);
+        };
+
+        function _getListFailed(response) {
+            console.log(response);
+        }
+
         //Update item
         function _updateItem(id) {
             groceryService.updateItem(id)
@@ -142,12 +170,15 @@
         }
 
         //Delete item
-        function _deleteItem(id) {
+        function _deleteItem(id, index) {
+            console.log(id);
+            gvm.index = index;
             groceryService.deleteItem(id)
                 .then(_deleteItemSuccessful, _deleteItemFailed);
+            gvm.itemList.splice(index, 1);
         }
 
-        function _deleteItemSuccessful(response) {
+        function _deleteItemSuccessful(response, index) {
             console.log(response);
         };
 

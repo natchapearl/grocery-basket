@@ -1,19 +1,19 @@
-﻿<nav class="navbar fixed-top">
+﻿<!--<nav class="navbar fixed-top">-->
     <!--<a class="navbar-brand" href="#">
         <img src="../navbarLogo.png" width="95" height="55" class="d-inline-block align-top" alt="">
     </a>-->
-</nav>
+<!--</nav>-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-5 groceryFormContainer">
-            <h3>Grocery List</h3>
+            <h3>Grocery List</h3><br />
             <form class="groceryForm">
                 <div class="form-group">
                     <label>Item</label>
                     <input ng-model="gvm.data.item" type="text" class="form-control item" placeholder="Enter your item here" />
                 </div>
                 <div class="form-group">
-                    <label>Comment</label>
+                    <label>Description</label>
                     <input ng-model="gvm.data.comment" type="text" class="form-control comment" placeholder="Enter item's description here" />
                 </div>
                 <div class="form-group">
@@ -25,17 +25,23 @@
             <pre class="preview">{{gvm | json}}</pre>
         </div>
 
-        <div class="col-md-7 groceryPrice">
+        <div class="col-md-7 groceryBasketContainer">
             <div class="groceryBasket">
-                <h3>Basket</h3>
+                <h3>Basket</h3><br />
                 <table class="basketTable">
-                    <tr ng-repeat="item in gvm.itemList">
-                        <td>{{item.Item}}</td>
-                        <td>{{item.Comment}}</td>
-                        <td>{{item.Quantity}}</td>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
                     </tr>
-                </table>
-                <pre>{{item | json}}</pre>
+                    <tr ng-repeat="item in gvm.itemList track by $index">
+                        <td><h6>{{item.Item}}</h6></td>
+                        <td><h6>{{item.Comment}}</h6></td>
+                        <td><h6>{{item.Quantity}}</h6></td>
+                        <td><button><i class="glyphicons glyphicons-edit"></i></button>&nbsp;&nbsp;&nbsp;<button ng-click="gvm.deleteItemBtn(item.Id, $index)" type="button" class="btn btn-sm btn-warning removeBtn">Remove</button></td>
+                    </tr>
+                </table><br />
+                <button ng-click="gvm.clearListBtn()" type="button" class="btn btn-sm btn-danger clearBtn">Clear List</button>
             </div>
         </div>
     </div>

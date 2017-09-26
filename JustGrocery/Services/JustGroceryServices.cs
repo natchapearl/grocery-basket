@@ -36,10 +36,10 @@ namespace JustGrocery.Services
                         Grocery groceryItem = new Grocery();
                         groceryItem.Id = reader.GetInt32(index++);
                         groceryItem.Item = reader.GetString(index++);
-                        //Get a nullable value for comment 
+                        //Get a nullable value for comment
                         if (!reader.IsDBNull(index++))
                         {
-                            groceryItem.Comment = reader.GetString(3);
+                            groceryItem.Comment = reader.GetString(2);
                         }
                         else
                         {
@@ -71,12 +71,13 @@ namespace JustGrocery.Services
                 cmd.CommandText = "dbo.GroceryList_Insert";
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                SqlParameter outputParam = cmd.Parameters.Add("@Id", SqlDbType.Int);
+                outputParam.Direction = ParameterDirection.Output;
+
                 cmd.Parameters.AddWithValue("@Item", model.Item);
                 cmd.Parameters.AddWithValue("@Comment", model.Comment);
                 cmd.Parameters.AddWithValue("@Quantity", model.Quantity);
 
-                SqlParameter outputParam = cmd.Parameters.Add("@Id", SqlDbType.Int);
-                outputParam.Direction = ParameterDirection.Output;
 
                 cmd.ExecuteNonQuery();
 
@@ -112,7 +113,7 @@ namespace JustGrocery.Services
 
                 SqlCommand cmd = conn.CreateCommand();
                 cmd.CommandText = "dbo.GroceryList_Delete";
-                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@Id", id);
 
