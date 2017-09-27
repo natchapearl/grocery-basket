@@ -131,11 +131,10 @@
         gvm.clearListBtn = _clearList;
         gvm.itemList = [];
 
-
         //View basket page
-        function _viewBasket() {
-            $state.go = ('basket');
-        }
+        //function _viewBasket() {
+        //    $state.go = ('basket');
+        //}
 
         //Add item
         function _addNewItem() {
