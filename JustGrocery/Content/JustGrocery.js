@@ -122,7 +122,6 @@
     function justGroceryController(groceryService, $state) {
         //Register the controller
         var gvm = this;
-        gvm.itemList = [];
         gvm.addItemBtn = _addNewItem;
         gvm.addNewItem = _addNewItem;
         gvm.$onInit = _getList;
@@ -130,6 +129,8 @@
         gvm.deleteItemBtn = _deleteItem;
         gvm.deleteItem = _deleteItem;
         gvm.clearListBtn = _clearList;
+        gvm.itemList = [];
+
 
         //View basket page
         function _viewBasket() {
@@ -160,7 +161,10 @@
 
         function _getListSuccessful(response) {
             console.log(response);
+            if (response.data.Groceries != null) {
+
             gvm.itemList = response.data.Groceries;
+            }
             console.log(gvm.itemList);
         };
 
