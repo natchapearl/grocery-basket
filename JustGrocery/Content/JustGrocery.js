@@ -16,11 +16,6 @@
             component: 'storeFront',
             url: '/storefront'
         })
-        //$stateProvider.state({
-        //    name: 'basket',
-        //    component: 'basket',
-        //    url: '/basket'
-        //});
     }
 
     //Register the component
@@ -28,10 +23,6 @@
         templateUrl: 'Content/StoreFront.html',
         controller: 'justGroceryController as gvm'
     });
-    //app.component('basket', {
-    //    templateUrl: 'Content/Basket.html',
-    //    controller: 'justGroceryController as gvm'
-    //});
 })();
 
 //----------Service----------//
@@ -122,6 +113,7 @@
     function justGroceryController(groceryService, $state) {
         //Register the controller
         var gvm = this;
+        gvm.itemList = [];
         gvm.addItemBtn = _addNewItem;
         gvm.addNewItem = _addNewItem;
         gvm.$onInit = _getList;
@@ -129,12 +121,6 @@
         gvm.deleteItemBtn = _deleteItem;
         gvm.deleteItem = _deleteItem;
         gvm.clearListBtn = _clearList;
-        gvm.itemList = [];
-
-        //View basket page
-        //function _viewBasket() {
-        //    $state.go = ('basket');
-        //}
 
         //Add item
         function _addNewItem() {
@@ -146,6 +132,12 @@
         function _addItemSuccessful(response) {
             console.log(response);
             gvm.itemList.push(Object.assign({}, gvm.data));
+            gvm.data.Item = "";
+            gvm.data.Comment = "";
+            gvm.data.Quantity = "";
+            //Do a get call to get an update on a new item so that it doesn't give an error when trying to delete that new item right after adding
+            groceryService.getList()
+                .then(_getListSuccessful, _getListFailed);
         };
 
         function _addItemFailed(response) {
@@ -197,8 +189,8 @@
             console.log(response);
         };
 
-        function _deleteItemFailed(response) {
-            console.log(response);
+        function _deleteItemFailed(error) {
+            console.log(error);
         }
 
         //Clear list

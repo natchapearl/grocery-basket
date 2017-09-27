@@ -13,7 +13,6 @@ namespace JustGrocery.Services
     public class JustGroceryServices : IJustGroceryServices
     {
         string connectionString = ConfigurationManager.ConnectionStrings["JustGroceryDBConnection"].ConnectionString;
-        //const string connectionString = "Server=.;Database=JustGrocery;Trusted_Connection=true";
 
         //Get a full grocery list
         public List<Grocery> GetGroceryList()
@@ -134,8 +133,6 @@ namespace JustGrocery.Services
                 cmd.ExecuteNonQuery();
             }
         }
-
-        //Grocery price scrapper
 
     }
 }
