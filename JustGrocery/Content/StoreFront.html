@@ -10,15 +10,15 @@
             <form class="groceryForm">
                 <div class="form-group">
                     <label>Item</label>
-                    <input ng-model="gvm.data.item" type="text" class="form-control item" placeholder="Enter your item here" />
+                    <input ng-model="gvm.data.Item" type="text" class="form-control item" placeholder="Enter your item here" />
                 </div>
                 <div class="form-group">
                     <label>Description</label>
-                    <input ng-model="gvm.data.comment" type="text" class="form-control comment" placeholder="Enter item's description here" />
+                    <input ng-model="gvm.data.Comment" type="text" class="form-control comment" placeholder="Enter item's description here" />
                 </div>
                 <div class="form-group">
                     <label>Quantity</label>
-                    <input ng-model="gvm.data.quantity" type="number" class="form-control quantity" />
+                    <input ng-model="gvm.data.Quantity" type="number" class="form-control quantity" />
                 </div><br />
                 <button ng-click="gvm.addItemBtn()" type="button" href="#" class="btn btn-sm btn-info addBtn">Add Item</button>
             </form>
@@ -38,7 +38,7 @@
                         <td><h6>{{item.Item}}</h6></td>
                         <td><h6>{{item.Comment}}</h6></td>
                         <td><h6>{{item.Quantity}}</h6></td>
-                        <td><button><i class="glyphicons glyphicons-edit"></i></button>&nbsp;&nbsp;&nbsp;<button ng-click="gvm.deleteItemBtn(item.Id, $index)" type="button" class="btn btn-sm btn-warning removeBtn">Remove</button></td>
+                        <td><button ng-click="gvm.deleteItemBtn(item.Id, $index)" type="button" class="btn btn-sm btn-warning removeBtn">Remove</button></td>
                     </tr>
                 </table><br />
                 <button ng-click="gvm.clearListBtn()" type="button" class="btn btn-sm btn-danger clearBtn">Clear List</button>

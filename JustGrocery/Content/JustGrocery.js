@@ -90,11 +90,23 @@
             console.log(id);
         }
 
+        function _clearWholeList() {
+            var settings = {
+                url: 'api/grocery/'
+                , method: 'DELETE'
+                , cache: false
+                , responseType: 'json'
+                , contentType: "application/json; character=UTF-8"
+            };
+            return $http(settings);
+        }
+
         return {
             addItem: _addItem,
             getList: _getList,
             updateItem: _updateItem,
-            deleteItem: _deleteItem
+            deleteItem: _deleteItem,
+            clearWholeList: _clearWholeList
         };
     }
 })();
@@ -114,10 +126,10 @@
         gvm.addItemBtn = _addNewItem;
         gvm.addNewItem = _addNewItem;
         gvm.$onInit = _getList;
+        gvm.updateItem = _updateItem;
         gvm.deleteItemBtn = _deleteItem;
         gvm.deleteItem = _deleteItem;
-        gvm.updateItem = _updateItem;
-        //gvm.clearListBtn = _clearList;
+        gvm.clearListBtn = _clearList;
 
         //View basket page
         function _viewBasket() {
@@ -145,6 +157,7 @@
             groceryService.getList()
                 .then(_getListSuccessful, _getListFailed);
         }
+
         function _getListSuccessful(response) {
             console.log(response);
             gvm.itemList = response.data.Groceries;
@@ -183,6 +196,21 @@
         };
 
         function _deleteItemFailed(response) {
+            console.log(response);
+        }
+
+        //Clear list
+        function _clearList() {
+            groceryService.clearWholeList()
+                .then(_clearListSuccessful, _clearListFailed);
+        }
+
+        function _clearListSuccessful(response) {
+            console.log(response);
+            gvm.itemList = [];
+        }
+
+        function _clearListFailed(response) {
             console.log(response);
         }
 

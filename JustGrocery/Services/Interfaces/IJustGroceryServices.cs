@@ -10,5 +10,6 @@ namespace JustGrocery.Services
         void DeleteItem(int id);
         List<Grocery> GetGroceryList();
         void UpdateItem(UpdateItemRequest model);
+        void ClearWholeList();
     }
 }

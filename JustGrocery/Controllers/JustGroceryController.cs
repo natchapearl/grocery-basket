@@ -66,6 +66,15 @@ namespace JustGrocery.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
+        //Clear whole list
+        [Route(), HttpDelete]
+        public HttpResponseMessage ClearWholeList()
+        {
+            SuccessResponse response = new SuccessResponse();
+            justGroceryServices.ClearWholeList();
+            return Request.CreateResponse(HttpStatusCode.OK, response);
+        }
+
         //Grocery price scrapper
 
     }

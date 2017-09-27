@@ -75,7 +75,7 @@ namespace JustGrocery.Services
                 outputParam.Direction = ParameterDirection.Output;
 
                 cmd.Parameters.AddWithValue("@Item", model.Item);
-                cmd.Parameters.AddWithValue("@Comment", model.Comment);
+                cmd.Parameters.AddWithValue("@Comment", (object)model.Comment ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Quantity", model.Quantity);
 
 
@@ -116,6 +116,21 @@ namespace JustGrocery.Services
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@Id", id);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        //Clear the whole list
+        public void ClearWholeList()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "dbo.GroceryList_ClearList";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.ExecuteNonQuery();
             }
