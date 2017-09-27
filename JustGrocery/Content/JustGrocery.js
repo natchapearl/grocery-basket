@@ -162,8 +162,7 @@
         function _getListSuccessful(response) {
             console.log(response);
             if (response.data.Groceries != null) {
-
-            gvm.itemList = response.data.Groceries;
+                gvm.itemList = response.data.Groceries;
             }
             console.log(gvm.itemList);
         };

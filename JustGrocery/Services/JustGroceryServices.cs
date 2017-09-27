@@ -78,7 +78,6 @@ namespace JustGrocery.Services
                 cmd.Parameters.AddWithValue("@Comment", (object)model.Comment ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Quantity", model.Quantity);
 
-
                 cmd.ExecuteNonQuery();
 
                 return (int)outputParam.Value;
